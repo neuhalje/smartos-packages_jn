@@ -1,1 +1,7 @@
 @comment $NetBSD$
+etc/zabbix_server.conf
+man/man8/zabbix_server.8
+sbin/zabbix_server
+@pkgdir share/zabbix/externalscripts
+@pkgdir share/zabbix/alertscripts
+@pkgdir etc/zabbix_server.conf.d
