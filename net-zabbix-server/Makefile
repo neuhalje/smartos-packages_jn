@@ -13,4 +13,12 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 
+CONFIGURE_ARGS=		--enable-server --disable-agent --with-mysql --disable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2=${PREFIX} --with-ldap
+
+.include "../../databases/mysql56-client/buildlink3.mk"
+.include "../../databases/openldap-client/buildlink3.mk"
+.include "../../net/net-snmp/buildlink3.mk"
+.include "../../security/libssh2/buildlink3.mk"
+.include "../../textproc/libxml2/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
