@@ -1,6 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	zabbix-2.2.1
+DISTNAME=	zabbix-server-2.2.1
 CATEGORIES=	net
 MASTER_SITES=	http://netcologne.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.1/
 
