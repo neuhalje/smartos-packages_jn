@@ -98,7 +98,8 @@ post-install:
 # FIXME: later	cd ${WRKSRC}; pax -rw frontends upgrades ${DESTDIR}${PREFIX}/share/zabbix/
 	cd ${WRKSRC}; pax -rw frontends upgrades ${DESTDIR}${PREFIX}/share/zabbix/
 
-.include "../../databases/mysql56-client/buildlink3.mk"
+.include "../../joyent/percona56-client/buildlink3.mk"
+#.include "../../databases/mysql56-client/buildlink3.mk"
 .include "../../databases/openldap-client/buildlink3.mk"
 .include "../../net/net-snmp/buildlink3.mk"
 .include "../../security/libssh2/buildlink3.mk"
