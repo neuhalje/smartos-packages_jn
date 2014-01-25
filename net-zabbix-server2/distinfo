@@ -3,3 +3,5 @@ $NetBSD$
 SHA1 (zabbix-2.2.1.tar.gz) = 2f07bfa08123f341ff16df88590d154282ce704f
 RMD160 (zabbix-2.2.1.tar.gz) = 24cfecc6825245b8a3ae15c23ffe38236cd37cd4
 Size (zabbix-2.2.1.tar.gz) = 14426358 bytes
+SHA1 (patch-aa) = af796189c9f42e0a6aeb8afc2bed0bfca7ccce2c
+SHA1 (patch-ab) = c880da7ca54dea36c64c5ff1ff3bff9c99823763

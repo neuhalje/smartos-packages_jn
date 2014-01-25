@@ -1,7 +1,21 @@
 @comment $NetBSD$
-etc/zabbix_server.conf
 man/man8/zabbix_server.8
 sbin/zabbix_server
+share/doc/zabbix/AUTHORS
+share/doc/zabbix/COPYING
+share/doc/zabbix/INSTALL
+share/doc/zabbix/NEWS
+share/doc/zabbix/README
+share/examples/zabbix/zabbix_server.conf
+share/zabbix/database/mysql/data.sql
+share/zabbix/database/mysql/images.sql
+share/zabbix/database/mysql/schema.sql
+share/zabbix/database/sqlite3/data.sql
+share/zabbix/database/sqlite3/images.sql
+share/zabbix/database/sqlite3/schema.sql
+share/zabbix/database/upgrades/dbpatches/1.6/mysql/patch.sql
+share/zabbix/database/upgrades/dbpatches/1.8/mysql/patch.sql
+@pkgdir share/zabbix/schema
 @pkgdir share/zabbix/externalscripts
 @pkgdir share/zabbix/alertscripts
-@pkgdir etc/zabbix_server.conf.d
+@pkgdir etc/zabbix/zabbix_server.conf.d
