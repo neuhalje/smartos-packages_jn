@@ -16,7 +16,7 @@
     <dependency name='db' grouping='require_all' restart_on='none' type='service'>
       <service_fmri value='svc:/pkgsrc/percona:default'/>
     </dependency>
-    <method_context project='zabbix' resource_pool=':default' working_directory='@ZBXHOME@'>
+    <method_context resource_pool=':default' working_directory='@ZBXHOME@'>
       <method_credential user='@ZBXUSER@' group='@ZBXGROUP@' limit_privileges=':default' privileges=':default' supp_groups=':default'/>
     </method_context>
     <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_server@ start' timeout_seconds='5' />

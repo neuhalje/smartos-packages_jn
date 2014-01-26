@@ -13,7 +13,7 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		makeinfo
-# TODO see below USE_TOOLS+=		pax
+USE_TOOLS+=		pax
 
 CONFIGURATION_FILES=	zabbix_server.conf
 #CONFIGURATION_FILES+=	zabbix_proxy.conf
@@ -73,7 +73,8 @@ SUBST_SED.fix-paths+=		-e 's,"@PIDDIR@,"${VARBASE}/run,g'
 
 OWN_DIRS+=	share/zabbix share/zabbix/database/mysql share/zabbix/database/sqlite3 share/zabbix/schema share/examples/zabbix share/doc/zabbix
 
-RCD_SCRIPTS=	zabbix_agentd zabbix_server
+RCD_SCRIPTS=	zabbix_server
+#RCD_SCRIPTS+=	zabbix_agentd
 .for script in ${RCD_SCRIPTS}
 RCD_SCRIPT_SRC.${script}=	${WRKSRC}/misc/init.d/freebsd/${script}
 .endfor
