@@ -1,0 +1,13 @@
+$NetBSD$
+Make hardcoded paths configurable.
+--- ./src/zabbix_agent/zabbix_agentd.corig	2014-01-25 10:31:51.960274368 +0000
++++ ./src/zabbix_agent/zabbix_agentd.c	2014-01-25 10:32:51.653437761 +0000
+@@ -55,7 +55,7 @@
+ #ifdef _WINDOWS
+ 	static char	DEFAULT_CONFIG_FILE[]	= "C:\\zabbix_agentd.conf";
+ #else
+-	static char	DEFAULT_CONFIG_FILE[]	= SYSCONFDIR "/zabbix_agentd.conf";
++        static char     DEFAULT_CONFIG_FILE[]   = "@CONFDIR@/zabbix_agentd.conf";
+ #endif
+ 
+ /* application TITLE */
