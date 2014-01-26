@@ -24,13 +24,13 @@ CONFIGURATION_FILES=	zabbix_server.conf
 CONFIGURE_ARGS=		--enable-server --disable-agent --with-mysql --disable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2=${PREFIX} --with-ldap
 CONFIGURE_ARGS+= --sysconfdir=${PKG_SYSCONFDIR}
 
-PKG_SYSCONFSUBDIR=	zabbix-server
+# ZABBIX user account
+ZBXUSER?=		zabbixs
+ZBXGROUP?=		zabbix
+
 EGDIR=			${PREFIX}/share/examples/${PKGBASE}
 
-CONF_FILES=		${EGDIR}/zabbix_server.conf ${PKG_SYSCONFDIR}/zabbix_server.conf
-#CONF_FILES+=		${EGDIR}/zabbix_proxy.conf ${PKG_SYSCONFDIR}/zabbix_trapper.conf
-#CONF_FILES+=		${EGDIR}/zabbix_agent.conf ${PKG_SYSCONFDIR}/zabbix_agent.conf
-#CONF_FILES+=		${EGDIR}/zabbix_agentd.conf ${PKG_SYSCONFDIR}/zabbix_agentd.conf
+CONF_FILES_PERMS=		${EGDIR}/zabbix_server.conf ${PKG_SYSCONFDIR}/zabbix_server.conf ${ZBXUSER} ${ZBXGROUP} 0600
 INSTALLATION_DIRS+=	${EGDIR}
 
 # Startup
@@ -38,9 +38,6 @@ RCD_SCRIPTS=		zabbix-server
 SMF_NAME=		zabbix-server
 SMF_METHODS=		${RCD_SCRIPTS}
 
-# ZABBIX user account
-ZBXUSER?=		zabbixs
-ZBXGROUP?=		zabbix
 ZBXWORKINGDIRECTORY?=	/tmp
 
 FILES_SUBST+=		ZBXUSER=${ZBXUSER}

@@ -854,4 +854,4 @@ share/zabbix-server/upgrades/dbpatches/2.2/README
 @pkgdir share/zabbix/externalscripts
 @pkgdir share/zabbix/alertscripts
 @pkgdir share/zabbix-server/schema
-@pkgdir etc/zabbix-server/zabbix_server.conf.d
+@pkgdir etc/zabbix_server.conf.d
