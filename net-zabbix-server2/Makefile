@@ -61,12 +61,13 @@ BUILD_DEFS+=		VARBASE
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		post-patch
 SUBST_MESSAGE.fix-paths=	Fixing absolute pathes.
-SUBST_FILES.fix-paths=		src/zabbix_server/server.c src/zabbix_agent/zabbix_agent.c
+SUBST_FILES.fix-paths=		src/zabbix_server/server.c src/zabbix_agent/zabbix_agentd.c conf/zabbix_server.conf conf/zabbix_agentd.conf
 SUBST_SED.fix-paths=		-e 's,"@PREFIX@,"${PREFIX},g'
 SUBST_SED.fix-paths+=		-e 's,"@HOMEDIR@,"${ZBXHOME},g'
 SUBST_SED.fix-paths+=		-e 's,"@CONFDIR@,"${PKG_SYSCONFDIR},g'
 SUBST_SED.fix-paths+=		-e 's,"@SCRIPTDIR@,"${PREFIX}/libexec/${PKGNAME_NOREV},g'
 SUBST_SED.fix-paths+=		-e 's,"@PIDDIR@,"${VARBASE}/run/zabbix,g'
+SUBST_SED.fix-paths+=		-e 's,^LogFile=.*/\([^/]*\)$$,LogFile=${VARBASE}/log/zabbix/\1,g'
 
 OWN_DIRS+=	share/zabbix share/zabbix/database/mysql share/zabbix/database/sqlite3 share/zabbix/schema share/examples/zabbix share/doc/zabbix
 OWN_DIRS_PERMS+=	${VARBASE}/run/zabbix ${ZBXUSER} ${ZBXGROUP} 0700
