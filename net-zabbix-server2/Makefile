@@ -1,6 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	zabbix-2.2.1
+PKGNAME=	zabbix-server-2.2.1
 CATEGORIES=	net
 MASTER_SITES=	http://netcologne.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.1/
 
@@ -23,7 +24,7 @@ CONFIGURATION_FILES=	zabbix_server.conf
 CONFIGURE_ARGS=		--enable-server --disable-agent --with-mysql --disable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2=${PREFIX} --with-ldap
 CONFIGURE_ARGS+= --sysconfdir=${PKG_SYSCONFDIR}
 
-PKG_SYSCONFSUBDIR=	zabbix
+PKG_SYSCONFSUBDIR=	zabbix-server
 EGDIR=			${PREFIX}/share/examples/${PKGBASE}
 
 CONF_FILES=		${EGDIR}/zabbix_server.conf ${PKG_SYSCONFDIR}/zabbix_server.conf
@@ -33,12 +34,12 @@ CONF_FILES=		${EGDIR}/zabbix_server.conf ${PKG_SYSCONFDIR}/zabbix_server.conf
 INSTALLATION_DIRS+=	${EGDIR}
 
 # Startup
-RCD_SCRIPTS=		zabbix
+RCD_SCRIPTS=		zabbix-server
 SMF_NAME=		zabbix-server
 SMF_METHODS=		${RCD_SCRIPTS}
 
 # ZABBIX user account
-ZBXUSER?=		zabbix
+ZBXUSER?=		zabbixs
 ZBXGROUP?=		zabbix
 ZBXWORKINGDIRECTORY?=	/tmp
 
@@ -52,7 +53,7 @@ PKG_USERS_VARS+=	ZBXUSER
 
 PKG_GROUPS=		${ZBXGROUP}
 PKG_USERS=		${ZBXUSER}:${ZBXGROUP}
-PKG_GECOS.${PGUSER}=	ZABBIX monitoring server pseudo-user
+PKG_GECOS.${PGUSER}=	ZABBIX monitoring server user
 PKG_SHELL.${PGUSER}=	${SH}
 
 
@@ -67,17 +68,18 @@ SUBST_SED.fix-paths+=		-e 's,"@HOMEDIR@,"${ZBXHOME},g'
 SUBST_SED.fix-paths+=		-e 's,"@CONFDIR@,"${PKG_SYSCONFDIR},g'
 SUBST_SED.fix-paths+=		-e 's,"@SCRIPTDIR@,"${PREFIX}/libexec/${PKGNAME_NOREV},g'
 SUBST_SED.fix-paths+=		-e 's,"@PIDDIR@,"${ZBXWORKINGDIRECTORY},g'
-SUBST_SED.fix-paths+=		-e 's,^LogFile=.*/\([^/]*\)$$,LogFile=${VARBASE}/log/zabbix/\1,g'
+SUBST_SED.fix-paths+=		-e 's,^LogFile=.*/\([^/]*\)$$,LogFile=${VARBASE}/log/${PKGBASE}/\1,g'
 
-OWN_DIRS+=	share/zabbix share/zabbix/database/mysql share/zabbix/database/sqlite3 share/zabbix/schema share/examples/zabbix share/doc/zabbix
-OWN_DIRS_PERMS+=	${VARBASE}/run/zabbix ${ZBXUSER} ${ZBXGROUP} 0700
-OWN_DIRS_PERMS+=	${VARBASE}/log/zabbix ${ZBXUSER} ${ZBXGROUP} 0700
+OWN_DIRS+=	share/zabbix-server share/zabbix-server/database/mysql share/zabbix-server/database/sqlite3 share/zabbix-server/schema share/examples/zabbix-server share/doc/zabbix-server
+OWN_DIRS_PERMS+=	${VARBASE}/log/zabbix-server ${ZBXUSER} ${ZBXGROUP} 0770
 
 RCD_SCRIPTS=	zabbix_server
 #RCD_SCRIPTS+=	zabbix_agentd
 .for script in ${RCD_SCRIPTS}
 RCD_SCRIPT_SRC.${script}=	${WRKSRC}/misc/init.d/freebsd/${script}
 .endfor
+
+PRINT_PLIST_AWK+=       /^etc/ { next; }
 
 # necessary SQL scripts
 
@@ -86,26 +88,22 @@ SQL_SCRIPTS+=	sqlite3/images.sql sqlite3/schema.sql sqlite3/data.sql
 
 SQL_SCRIPTS_DIR=	${WRKSRC}/database
 
-#CHECK_INTERPRETER_SKIP=	share/zabbix/upgrades/dbpatches/1.8/mysql/upgrade
-#CHECK_WRKREF_SKIP=	share/zabbix/upgrades/Makefile
-
 post-install:
 .for d in ${OWN_DIRS}
 	mkdir -p ${DESTDIR}${PREFIX}/${d}
 .endfor
 # documentation
-	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/zabbix/
+	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/
 .for f in ${CONFIGURATION_FILES}
 	${INSTALL_DATA} ${WRKSRC}/conf/${f} ${DESTDIR}${EGDIR}/${f}
 .endfor
 .for f in ${SQL_SCRIPTS}
-	${INSTALL_DATA} ${SQL_SCRIPTS_DIR}/${f} ${DESTDIR}${PREFIX}/share/zabbix/database/${f}
+	${INSTALL_DATA} ${SQL_SCRIPTS_DIR}/${f} ${DESTDIR}${PREFIX}/share/${PKGBASE}/database/${f}
 .endfor
 .for f in AUTHORS COPYING INSTALL NEWS README
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/share/doc/zabbix/${f}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/${f}
 .endfor
-# FIXME: later	cd ${WRKSRC}; pax -rw frontends upgrades ${DESTDIR}${PREFIX}/share/zabbix/
-	cd ${WRKSRC}; pax -rw frontends upgrades ${DESTDIR}${PREFIX}/share/zabbix/
+	cd ${WRKSRC}; pax -rw frontends upgrades ${DESTDIR}${PREFIX}/share/${PKGBASE}/
 
 .include "../../joyent/percona56-client/buildlink3.mk"
 #.include "../../databases/mysql56-client/buildlink3.mk"
