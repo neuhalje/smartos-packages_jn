@@ -11,7 +11,7 @@
 
 case "$1" in
 	start)
-                @LOCALBASE@/zabbix_server &
+                @LOCALBASE@/sbin/zabbix_server &
 		;;
 	*)
 		echo ""

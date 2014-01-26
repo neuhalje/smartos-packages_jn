@@ -19,8 +19,8 @@
     <method_context resource_pool=':default' working_directory='@ZBXWORKINGDIRECTORY@'>
       <method_credential user='@ZBXUSER@' group='@ZBXGROUP@' limit_privileges=':default' privileges=':default' supp_groups=':default'/>
     </method_context>
-    <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_server@ start' timeout_seconds='5' />
-    <exec_method type='method' name='stop' exec=':kill' timeout_seconds='5'>
+    <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_server@ start' timeout_seconds='600' />
+    <exec_method type='method' name='stop' exec=':kill' timeout_seconds='60'>
     </exec_method>
     <stability value='Evolving' />
     <template>
