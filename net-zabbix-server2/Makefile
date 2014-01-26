@@ -66,9 +66,11 @@ SUBST_SED.fix-paths=		-e 's,"@PREFIX@,"${PREFIX},g'
 SUBST_SED.fix-paths+=		-e 's,"@HOMEDIR@,"${ZBXHOME},g'
 SUBST_SED.fix-paths+=		-e 's,"@CONFDIR@,"${PKG_SYSCONFDIR},g'
 SUBST_SED.fix-paths+=		-e 's,"@SCRIPTDIR@,"${PREFIX}/libexec/${PKGNAME_NOREV},g'
-SUBST_SED.fix-paths+=		-e 's,"@PIDDIR@,"${VARBASE}/run,g'
+SUBST_SED.fix-paths+=		-e 's,"@PIDDIR@,"${VARBASE}/run/zabbix,g'
 
 OWN_DIRS+=	share/zabbix share/zabbix/database/mysql share/zabbix/database/sqlite3 share/zabbix/schema share/examples/zabbix share/doc/zabbix
+OWN_DIRS_PERMS+=	${VARBASE}/run/zabbix ${ZBXUSER} ${ZBXGROUP} 0700
+OWN_DIRS_PERMS+=	${VARBASE}/log/zabbix ${ZBXUSER} ${ZBXGROUP} 0700
 
 RCD_SCRIPTS=	zabbix_server
 #RCD_SCRIPTS+=	zabbix_agentd
