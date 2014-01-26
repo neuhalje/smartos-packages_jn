@@ -32,6 +32,14 @@ CONF_FILES=		${EGDIR}/zabbix_server.conf ${PKG_SYSCONFDIR}/zabbix_server.conf
 #CONF_FILES+=		${EGDIR}/zabbix_agentd.conf ${PKG_SYSCONFDIR}/zabbix_agentd.conf
 INSTALLATION_DIRS+=	${EGDIR}
 
+CNFSUBST=		-e 's,@PREFIX@,${PREFIX},g'
+CNFSUBST+=		-e 's,@VARBASE@,${VARBASE},g'
+
+# Startup
+RCD_SCRIPTS=		zabbix
+SMF_NAME=		zabbix_server
+SMF_METHODS=		${RCD_SCRIPTS}
+
 # ZABBIX user account
 ZBXUSER?=		zabbix
 ZBXGROUP?=		zabbix
