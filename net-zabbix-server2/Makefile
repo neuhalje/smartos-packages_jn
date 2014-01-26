@@ -34,7 +34,7 @@ INSTALLATION_DIRS+=	${EGDIR}
 
 # Startup
 RCD_SCRIPTS=		zabbix
-SMF_NAME=		zabbix_server
+SMF_NAME=		zabbix-server
 SMF_METHODS=		${RCD_SCRIPTS}
 
 # ZABBIX user account
