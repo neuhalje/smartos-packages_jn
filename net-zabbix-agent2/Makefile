@@ -93,11 +93,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/${f}
 .endfor
 
-.include "../../joyent/percona56-client/buildlink3.mk"
-#.include "../../databases/mysql56-client/buildlink3.mk"
-.include "../../databases/openldap-client/buildlink3.mk"
-.include "../../net/net-snmp/buildlink3.mk"
-.include "../../security/libssh2/buildlink3.mk"
-.include "../../textproc/libxml2/buildlink3.mk"
-.include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
