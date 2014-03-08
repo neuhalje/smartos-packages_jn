@@ -38,7 +38,7 @@ CONFLICTS=	netatalk-asun-[0-9]* netatalk-umich-[0-9]*
 
 #BUILDLINK_TRANSFORM+=	l:db48:${BDB_TYPE}
 
-.include "../../mk/bsd.pkg.mk"
+.include "../../mk/bsd.prefs.mk"
 
 BUILD_DEFS+=		VARBASE
 # CONFIGURE_ARGS+=	--enable-netbsd
@@ -107,3 +107,4 @@ post-install:
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
+.include "../../mk/bsd.pkg.mk"
