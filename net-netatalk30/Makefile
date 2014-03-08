@@ -30,7 +30,7 @@ PKG_CONFIG=		yes
 PKG_SYSCONFSUBDIR=	netatalk
 EGDIR=		${PREFIX}/share/examples/netatalk
 #CONF_FILES=	${EGDIR}/afp.conf		${PKG_SYSCONFDIR}/afd.conf
-CONF_FILES+=	${DESTDIR}${EGDIR}/afp.conf	${PKG_SYSCONFDIR}/afp.conf
+CONF_FILES+=	${EGDIR}/afp.conf	${PKG_SYSCONFDIR}/afp.conf
 CONF_FILES+=	${EGDIR}/extmap.conf		${PKG_SYSCONFDIR}/extmap.conf
 #CONF_FILES+=	${EGDIR}/netatalk-dbus.conf	${PKG_SYSCONFDIR}/netatalk-dbus.conf
 
@@ -89,7 +89,6 @@ PLIST.ea=		yes
 .include "options.mk"
 
 INSTALLATION_DIRS=	libexec/psffilters etc/netatalk
-
 
 OWN_DIRS_PERMS+=        ${VARBASE}/db/netatalk/CNID/Storage root root 0770
 
