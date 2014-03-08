@@ -1,9 +1,9 @@
 # $NetBSD$
 
-DISTNAME=	zabbix-2.2.1
-PKGNAME=	zabbix-agent-2.2.1
+DISTNAME=	zabbix-2.2.2
+PKGNAME=	zabbix-agent-2.2.2
 CATEGORIES=	net
-MASTER_SITES=	http://netcologne.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.1/
+MASTER_SITES=	http://netcologne.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.2.2/
 
 MAINTAINER=	jens@neuhalfen.name
 HOMEPAGE=	http://www.zabbix.com/
