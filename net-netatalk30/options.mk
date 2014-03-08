@@ -37,6 +37,8 @@ CONFIGURE_ARGS+=	--with-gssapi --enable-krbV-uam
 CONFIGURE_ENV+=		GSSAPI_LIBS="-lkrb5 -lroken -lasn1 -lcrypto -lcom_err"
 PLIST.gssapi=		yes
 .else
+# even include krb5 when it is not needed. afpd is linked against it anyway
+.include "../../mk/krb5.buildlink3.mk"
 CONFIGURE_ARGS+=	--without-gssapi
 .endif
 
