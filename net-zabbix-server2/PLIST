@@ -409,6 +409,7 @@ share/zabbix-server/frontends/php/include/classes/import/readers/CJsonImportRead
 share/zabbix-server/frontends/php/include/classes/import/readers/CXmlImportReader.php
 share/zabbix-server/frontends/php/include/classes/items/CHelpItems.php
 share/zabbix-server/frontends/php/include/classes/macros/CMacrosResolver.php
+share/zabbix-server/frontends/php/include/classes/macros/CMacrosResolverGeneral.php
 share/zabbix-server/frontends/php/include/classes/macros/CMacrosResolverHelper.php
 share/zabbix-server/frontends/php/include/classes/parsers/CTriggerExpression.php
 share/zabbix-server/frontends/php/include/classes/screens/CScreenActions.php
