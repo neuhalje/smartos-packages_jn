@@ -43,20 +43,21 @@ CONFLICTS=	netatalk-asun-[0-9]* netatalk-umich-[0-9]*
 BUILD_DEFS+=		VARBASE
 # CONFIGURE_ARGS+=	--enable-netbsd
 # CONFIGURE_ARGS+=	--enable-overwrite
+CONFIGURE_ARGS+=	--disable-ddp
+CONFIGURE_ARGS+=	--enable-quota
 CONFIGURE_ARGS+=	--enable-timelord
-CONFIGURE_ARGS+=        --with-libgcrypt
-CONFIGURE_ARGS+=        --prefix=${PREFIX}
-CONFIGURE_ARGS+=	--with-init-style=solaris
-# CONFIGURE_ARGS+=	--enable-ddp
-# CONFIGURE_ARGS+=	--enable-quota
-# CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/libexec/netatalk
-# CONFIGURE_ARGS+=	--sbindir=${PREFIX}/libexec/netatalk
-CONFIGURE_ARGS+=	--with-pkgconfdir=${PKG_SYSCONFDIR}
-CONFIGURE_ARGS+=	--with-message-dir=${PKG_SYSCONFDIR}/msg
-# CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/db
-# CONFIGURE_ARGS+=	--with-uams-path=${PREFIX}/libexec/netatalk/uams
+CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/libexec/netatalk
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/db
+CONFIGURE_ARGS+=	--sbindir=${PREFIX}/libexec/netatalk
 CONFIGURE_ARGS+=	--with-bdb=${BDBBASE}
+CONFIGURE_ARGS+=	--with-init-dir=/var/svc/manifest/network
+CONFIGURE_ARGS+=	--with-init-style=solaris
+CONFIGURE_ARGS+=	--with-message-dir=${PKG_SYSCONFDIR}/msg
+CONFIGURE_ARGS+=	--with-pkgconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.openssl}
+#CONFIGURE_ARGS+=	--with-uams-path=${PREFIX}/libexec/netatalk/uams
+CONFIGURE_ARGS+=        --prefix=${PREFIX}
+CONFIGURE_ARGS+=        --with-libgcrypt
 CONFIGURE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH}
 
 CFLAGS.SunOS+= -I/usr/include/kerberosv5/
