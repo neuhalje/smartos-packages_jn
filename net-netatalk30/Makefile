@@ -90,6 +90,9 @@ PLIST.ea=		yes
 
 INSTALLATION_DIRS=	libexec/psffilters etc/netatalk
 
+
+OWN_DIRS_PERMS+=        ${VARBASE}/db/netatalk/CNID/Storage root root 0770
+
 .if !empty(PKG_OPTIONS:Mpam)
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/config/pam/netatalk.pam ${DESTDIR}${EGDIR}
